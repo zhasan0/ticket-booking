@@ -32,29 +32,14 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+$routes->get('/login', 'Auth::index');
+$routes->get('/register', 'Auth::register');
 
-$routes->group('',['filter'=>'AuthCheck'], function($routes){
-    $routes->get('/dashboard','dashboard::index');
+$routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
+    $routes->get('/dashboard', 'dashboard::index');
 });
 
-// $routes->group('',['filter'=>'AlreadyLoggedin'], function($routes){
-//     $routes->get('/auth','auth::index');
-//     $routes->get('/auth/register','auth::register');
-// });
 
-/*
- * --------------------------------------------------------------------
- * Additional Routing
- * --------------------------------------------------------------------
- *
- * There will often be times that you need additional routing and you
- * need it to be able to override any defaults in this file. Environment
- * based routes is one such time. require() additional route files here
- * to make that happen.
- *
- * You will have access to the $routes object within that file without
- * needing to reload it.
- */
 if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
     require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }

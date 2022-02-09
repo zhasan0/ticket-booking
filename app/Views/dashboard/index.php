@@ -22,8 +22,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><?php echo $userInfo['name']; ?></td>
-                            <td><?php echo $userInfo['email']; ?></td>
+                            <td><?php echo $loggedUser['name']; ?></td>
+                            <td><?php echo $loggedUser['email']; ?></td>
                             <td><a href="<?php echo site_url('auth/logout'); ?>">L</a></td>
                         </tr>
                     </tbody>

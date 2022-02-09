@@ -35,7 +35,7 @@ class Database extends Config
         'hostname' => 'localhost',
         'username' => '',
         'password' => '',
-        'database' => 'air-bus',
+        'database' => 'ticket_system',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,

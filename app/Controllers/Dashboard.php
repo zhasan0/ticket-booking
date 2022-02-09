@@ -6,12 +6,10 @@ class Dashboard extends BaseController
 {
     public function index()
     {
-        $userModel = new \App\Models\UsersModel();
-        $loggedUserId = session()->get('loggedUser');
-        $userInfo = $userModel->find($loggedUserId);
+        $loggedUser = session()->get('loggedUser');
         $data = [
             'title' => 'Dashboard',
-            'userInfo' =>$userInfo
+            'loggedUser' => $loggedUser
         ];
         return view('dashboard/index', $data);
     }

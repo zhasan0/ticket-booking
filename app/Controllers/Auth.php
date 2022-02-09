@@ -6,107 +6,83 @@ class Auth extends BaseController
 {
     public function __construct()
     {
-        helper(['url','form']);
+        helper(['url', 'form']);
     }
+
     public function index()
     {
         return view('auth/login');
     }
+
     public function register()
     {
         return view('auth/register');
     }
-    public function save()
-    {
-       $validation = $this->validate([
-            'name'=>'required',
-            'email'=>'required|valid_email|is_unique[users.email]',
-            'password' => 'required|min_length[4]|max_length[12]',
-            'cpassword'  => 'required|min_length[4]|max_length[12]|matches[password]'
-       ]);
 
-       if(!$validation){
-           return view('auth/register',['validation'=>$this->validator]);
-       }
-       else
-       
-       $name = $this->request->getPost('name');
-       $email = $this->request->getPost('email');
-       $password = $this->request->getPost('password');
-
-       $values = [
-           'name'=>$name,
-           'email'=>$email,
-           'password'=>$password,
-       ];
-
-       $usersModal = new \App\Models\UsersModel();
-       $query = $usersModal->insert($values);
-       if(!$query)
-       {
-           return redirect()->back()->with('fail','Somthing went wrong');
-           
-       }
-       else
-       {
-        return redirect()->to('auth/register')->with('success','You have done it');
-       }
-    }
-
-    function check()
+    public function registrationCheck()
     {
         $validation = $this->validate([
-            'email'=> [
-                'rules'=>'required|valid_email|is_not_unique[users.email]',
-                'erroes'=>[
-                    'required'=>'Email Required',
-                    'valid_email'=>'Enter a valid Email ',
-                    'is_not_unique'=>'This Email is not registered',
-                ]
-                
-                ],
-                'password'=> [
-                    'rules'=>'required|min_length[4]|max_length[12]|matches[password]',
-                    'erroes'=>[
-                        'required'=>'Password is Required',
-                        'min_length'=>'Must have atleast 4 char',
-                        'max_length'=>'Must have atleast 12 char',
-                    
-                    ]
-                ]
-            
-       ]);
+            'name' => 'required',
+            'email' => 'required|is_unique[users.email]',
+            'phone' => 'required',
+            'country' => 'required',
+            'password' => 'required|min_length[6]|max_length[12]',
+            'cpassword' => 'required|min_length[6]|max_length[12]|matches[password]'
+        ]);
 
-       if(!$validation){
-        return view('auth/login',['validation'=>$this->validator]);
-       }else
-       {
-         $email = $this->request->getPost('email');
-         $password = $this->request->getPost('password');
-         $usersModal = new \App\Models\UsersModel();
-         $user_info = $usersModal->where('email', $email)->first();
-        // $check_password = Hash::check($password, user_info['password']);
+        if (!$validation) {
+            return view('auth/register', ['validation' => $this->validator]);
+        } else
 
-        // if(!$check_password){
-        //     session()->setFlashdata('fail','Incorrect Password');
-        //     return redirect()->to('/auth')->withInput();
-        // }
+            $name = $this->request->getPost('name');
+        $email = $this->request->getPost('email');
+        $phone = $this->request->getPost('phone');
+        $country = $this->request->getPost('country');
+        $password = $this->request->getPost('password');
 
-        if($password == $user_info['password'] && $user_info['email'] == $email ){
-            $user_id = $user_info['id'];
-            session()->set('loggedUser', $user_id);
+        $values = [
+            'name' => $name,
+            'email' => $email,
+            'phone' => $phone,
+            'country' => $country,
+            'password' => md5($password),
+        ];
 
-            return redirect()->to('/dashboard');
+        $usersModal = new \App\Models\UsersModel();
+        $query = $usersModal->insert($values);
+        if (!$query) {
+            return redirect()->back()->with('fail', 'Ohhh! Something went wrong!');
+
+        } else {
+            return redirect()->to('login')->with('success', 'Congratulations! Successfully registered!');
         }
-        return view('auth/login');
-
-       }
     }
 
-    function logout(){
-        if(session()->has('loggedUser')){
+
+    function loginCheck()
+    {
+        $email = $this->request->getPost('email');
+        $password = md5($this->request->getPost('password'));
+        $usersModal = new \App\Models\UsersModel();
+        $user_info = $usersModal->where('email', $email)->first();
+
+        if (!$user_info) {
+            return redirect()->back()->with('fail', "Ohhh! Entered invalid email or password!");
+        } else {
+            if ($password == $user_info['password']) {
+                session()->set('loggedUser', $user_info);
+            } else {
+                return redirect()->back()->with('fail', "Ohhh! Entered invalid email or password!");
+            }
+            return redirect()->to('/dashboard');
+        }
+    }
+
+    function logout()
+    {
+        if (session()->has('loggedUser')) {
             session()->remove('loggedUser');
-            return redirect()->to('/auth?access=out')->with('fail', 'You are logged out');
+            return redirect()->route('login')->with('fail', 'You are logged out');
         }
     }
 }

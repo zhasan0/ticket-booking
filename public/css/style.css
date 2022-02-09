@@ -1,3 +1,6 @@
+body{
+	background-color: #f1f1f1;
+}
 .section {
 	position: relative;
 	height: 100vh;
@@ -191,4 +194,24 @@
 .booking-cta p {
 	font-size: 22px;
 	color: #191a1e;
+}
+/*==login style=====*/
+a{
+	text-decoration: none;
+}
+.auth_area{
+	padding-top: 20px;
+	text-align: right;
+}
+.login_area{
+	width: 450px;
+	margin: 0 auto;
+	padding: 30px 20px;
+	background-color: #ffffff;
+}
+.register_area{
+	width: 800px;
+	margin: 0 auto;
+	padding: 30px 20px;
+	background-color: #ffffff;
 }
