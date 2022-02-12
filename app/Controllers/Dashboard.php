@@ -6,11 +6,10 @@ class Dashboard extends BaseController
 {
     public function index()
     {
-        $loggedUser = session()->get('loggedUser');
         $data = [
-            'title' => 'Dashboard',
-            'loggedUser' => $loggedUser
+            'page_header' => 'Dashboard'
         ];
-        return view('dashboard/index', $data);
+
+        return view('admin/index', $data);
     }
 }

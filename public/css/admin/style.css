@@ -1,0 +1,21 @@
+.main-content{
+    padding: 50px 100px;
+    width: 100%;
+    background-color: #f1f1f1;
+}
+.list{
+    /*width: 600px;*/
+    margin: 50px auto auto auto;
+}
+.page-header{
+    margin-bottom: 70px;
+    display: block;
+}
+table{width: 100%;}
+table.dataTable.display tbody tr.odd > .sorting_1, table.dataTable.order-column.stripe tbody tr.odd > .sorting_1{background-color: #f9f9f9;}
+.form{
+    width: 950px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 30px 50px;
+}

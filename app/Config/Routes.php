@@ -35,8 +35,12 @@ $routes->get('/', 'Home::index');
 $routes->get('/login', 'Auth::index');
 $routes->get('/register', 'Auth::register');
 
-$routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
+$routes->group('admin', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->get('/dashboard', 'dashboard::index');
+    $routes->get('/orders', 'Order::index');
+    $routes->get('/companies', 'company::index');
+    $routes->get('/ticket/origin', 'ticketorigin::index');
+    $routes->get('/users', 'User::index');
 });
 
 

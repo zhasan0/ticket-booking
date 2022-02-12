@@ -32,57 +32,57 @@ class Auth extends BaseController
 
         if (!$validation) {
             return view('auth/register', ['validation' => $this->validator]);
-        } else
+        } else {
 
             $name = $this->request->getPost('name');
-        $email = $this->request->getPost('email');
-        $phone = $this->request->getPost('phone');
-        $country = $this->request->getPost('country');
-        $password = $this->request->getPost('password');
+            $email = $this->request->getPost('email');
+            $phone = $this->request->getPost('phone');
+            $country = $this->request->getPost('country');
+            $password = $this->request->getPost('password');
 
-        $values = [
-            'name' => $name,
-            'email' => $email,
-            'phone' => $phone,
-            'country' => $country,
-            'password' => md5($password),
-        ];
+            $values = [
+                'name' => $name,
+                'email' => $email,
+                'phone' => $phone,
+                'country' => $country,
+                'password' => md5($password),
+            ];
 
-        $usersModal = new \App\Models\UsersModel();
-        $query = $usersModal->insert($values);
-        if (!$query) {
-            return redirect()->back()->with('fail', 'Ohhh! Something went wrong!');
+            $usersModal = new \App\Models\UsersModel();
+            $query = $usersModal->insert($values);
+            if (!$query) {
+                return redirect()->back()->with('fail', 'Ohhh! Something went wrong!');
 
-        } else {
-            return redirect()->to('login')->with('success', 'Congratulations! Successfully registered!');
-        }
-    }
-
-
-    function loginCheck()
-    {
-        $email = $this->request->getPost('email');
-        $password = md5($this->request->getPost('password'));
-        $usersModal = new \App\Models\UsersModel();
-        $user_info = $usersModal->where('email', $email)->first();
-
-        if (!$user_info) {
-            return redirect()->back()->with('fail', "Ohhh! Entered invalid email or password!");
-        } else {
-            if ($password == $user_info['password']) {
-                session()->set('loggedUser', $user_info);
             } else {
-                return redirect()->back()->with('fail', "Ohhh! Entered invalid email or password!");
+                return redirect()->to('login')->with('success', 'Congratulations! Successfully registered!');
             }
-            return redirect()->to('/dashboard');
         }
     }
 
-    function logout()
-    {
-        if (session()->has('loggedUser')) {
-            session()->remove('loggedUser');
-            return redirect()->route('login')->with('fail', 'You are logged out');
+        function loginCheck()
+        {
+            $email = $this->request->getPost('email');
+            $password = md5($this->request->getPost('password'));
+            $usersModal = new \App\Models\UsersModel();
+            $user_info = $usersModal->where('email', $email)->first();
+
+            if (!$user_info) {
+                return redirect()->back()->with('fail', "Ohhh! Entered invalid email or password!");
+            } else {
+                if ($password == $user_info['password']) {
+                    session()->set('loggedUser', $user_info);
+                } else {
+                    return redirect()->back()->with('fail', "Ohhh! Entered invalid email or password!");
+                }
+                return redirect()->to('/dashboard');
+            }
+        }
+
+        function logout()
+        {
+            if (session()->has('loggedUser')) {
+                session()->remove('loggedUser');
+                return redirect()->route('login')->with('fail', 'You are logged out');
+            }
         }
     }
-}
