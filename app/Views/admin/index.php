@@ -7,7 +7,7 @@
                 <div class="box bg-1">
                     <div class="box-content ">
                         <h5 class="text-uppercase">Total Orders</h5>
-                        <span>20</span>
+                        <span><?php echo sizeof($orders);?></span>
                     </div>
                     <div class="box-footer">
                         <a href="<?php echo site_url('order/index'); ?>">See All Orders</a>
@@ -18,7 +18,7 @@
                 <div class="box bg-2">
                     <div class="box-content">
                         <h5 class="text-uppercase">Total Tickets</h5>
-                        <span>20</span>
+                        <span><?php echo sizeof($tickets);?></span>
                     </div>
                     <div class="box-footer">
                         <a href="<?php echo site_url('ticketorigin/index'); ?>">See All Tickets</a>
@@ -29,7 +29,7 @@
                 <div class="box bg-3">
                     <div class="box-content">
                         <h5 class="text-uppercase">Total Customers</h5>
-                        <span>20</span>
+                        <span><?php echo sizeof($customers);?></span>
                     </div>
                     <div class="box-footer">
                         <a href="<?php echo site_url('user/index'); ?>">See All Customers</a>

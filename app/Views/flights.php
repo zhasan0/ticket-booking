@@ -42,7 +42,7 @@
                 <td><?= $row->_from ?></td>
                 <td><?= $row->_to ?></td>
                 <td><?= $row->fly_date ?></td>
-                <td><a href=<?php
+                <td><a class="btn btn-success" href=<?php
                     echo site_url("order/booking/" . $row->id) ?>>Book</a></td>
             </tr>
             <?php

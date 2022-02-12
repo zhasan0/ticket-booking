@@ -17,8 +17,8 @@ class TicketOriginModel extends Model
     protected $allowedFields = [
         'name',
         'company',
-        'from',
-        'to',
+        '_from',
+        '_to',
         'fly_date',
         'purchase_price',
         'sale_price',
