@@ -7,6 +7,7 @@
     <link rel="icon" type="image/x-icon" href="<?php echo base_url('img/logo.png') ?>">
     <link rel="stylesheet" href="<?php echo base_url('bootstrap/css/bootstrap.min.css') ?>">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
     <link rel="stylesheet" href="<?php echo base_url('css/sidebars.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('css/admin/style.css') ?>">
     <title>Dashboard</title>
@@ -23,46 +24,35 @@
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
-                <?php if (session()->get('loggedUser')['type'] == "admin") { ?>
-<!--                    <li>-->
-<!--                        <a href="/dashboard" class="nav-link text-white">-->
-<!--                            <svg class="bi me-2" width="16" height="16">-->
-<!--                                <use xlink:href="#speedometer2"/>-->
-<!--                            </svg>-->
-<!--                            Dashboard-->
-<!--                        </a>-->
-<!--                    </li>-->
+                <?php if ( !empty(session()->get('loggedUser')) && session()->get('loggedUser')['type'] == "admin") { ?>
+                    <li>
+                        <a href="/dashboard" class="nav-link text-white">
+                            <i class="fa-solid fa-table-columns"></i> &nbsp;&nbsp;
+                            Dashboard
+                        </a>
+                    </li>
                 <?php } ?>
                 <li>
                     <a href="<?php echo site_url('order/index'); ?>" class="nav-link text-white">
-                        <svg class="bi me-2" width="16" height="16">
-                            <use xlink:href="#table"/>
-                        </svg>
+                        <i class="fa-solid fa-cart-arrow-down"></i>&nbsp;&nbsp;
                         Orders
                     </a>
                 </li>
-                <?php if (session()->get('loggedUser')['type'] == "admin") { ?>
+                <?php if (!empty(session()->get('loggedUser')) && session()->get('loggedUser')['type'] == "admin") { ?>
                     <li>
                         <a href="<?php echo site_url('company/index'); ?>" class="nav-link text-white">
-                            <svg class="bi me-2" width="16" height="16">
-                                <use xlink:href="#grid"/>
-                            </svg>
+                            <i class="fa-solid fa-building"></i>&nbsp;&nbsp;&nbsp;
                             Companies
                         </a>
                     </li>
                     <li>
                         <a href="<?php echo site_url('ticketorigin/index'); ?>" class="nav-link text-white">
-                            <svg class="bi me-2" width="16" height="16">
-                                <use xlink:href="#people-circle"/>
-                            </svg>
-                            Ticket Origins
+                            <i class="fa-solid fa-ticket"></i>&nbsp;&nbsp;Ticket Origins
                         </a>
                     </li>
                     <li>
                         <a href="<?php echo site_url('user/index'); ?>" class="nav-link text-white">
-                            <svg class="bi me-2" width="16" height="16">
-                                <use xlink:href="#people-circle"/>
-                            </svg>
+                            <i class="fa-solid fa-users"></i>&nbsp;&nbsp;
                             Customer
                         </a>
                     </li>
@@ -74,7 +64,7 @@
                    id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="<?php echo base_url('img/user_logo.png') ?>" alt="" width="32" height="32"
                          class="rounded-circle me-2">
-                    <strong><?php echo session()->get('loggedUser')['name']; ?></strong>
+                    <strong><?php if (!empty(session()->get('loggedUser'))) { echo session()->get('loggedUser')['name']; }?></strong>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                     <li><a class="dropdown-item" href="<?php echo site_url('auth/logout'); ?>">Logout</a></li>
@@ -104,6 +94,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url('js/admin/sidebars.js') ?>"></script>
 <script src="<?php echo base_url('js/admin/index.js') ?>"></script>

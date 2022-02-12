@@ -72,7 +72,7 @@ class Auth extends BaseController
             if ($password == $user_info['password']) {
                 session()->set('loggedUser', $user_info);
                 if ($user_info['type'] == "customer"){
-                    return redirect()->to('order/index');
+                    return redirect()->to('/');
                 }
             } else {
                 return redirect()->back()->with('fail', "Ohhh! Entered invalid email or password!");

@@ -36,13 +36,15 @@ $routes->get('/login', 'Auth::index');
 $routes->get('/register', 'Auth::register');
 $routes->get('/search', 'Home::search');
 
-$routes->group('admin', ['filter' => 'AuthCheck'], function ($routes) {
+$routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->get('/dashboard', 'dashboard::index');
-    $routes->get('/orders', 'Order::index');
+    $routes->get('/orders', 'order::index');
     $routes->get('/companies', 'company::index');
     $routes->get('/ticket/origin', 'ticketorigin::index');
-    $routes->get('/users', 'User::index');
-    $routes->post('booking/(:num)', 'Order::booking/$1');
+    $routes->get('/users', 'user::index');
+    $routes->post('booking/(:num)', 'order::booking/$1');
+    $routes->post('cancel/(:num)', 'order::cancel/$1');
+    $routes->post('approve/(:num)', 'order::approve/$1');
 });
 
 
