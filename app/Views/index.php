@@ -13,18 +13,18 @@
             </div>
             <div class="col-md-7 col-md-offset-1">
                 <div class="booking-form">
-                    <form action="" method="">
+                    <form action="search" method="get">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <span class="form-label">Flying from</span>
-                                    <input class="form-control" type="text" placeholder="City or airport">
+                                    <input name="from" class="form-control" type="text" placeholder="City or airport">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <span class="form-label">Flyning to</span>
-                                    <input class="form-control" type="text" placeholder="City or airport">
+                                    <input name="to" class="form-control" type="text" placeholder="City or airport">
                                 </div>
                             </div>
                         </div>
@@ -32,13 +32,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <span class="form-label">Departing</span>
-                                    <input class="form-control" type="date" required>
+                                    <input name="flaying_date" class="form-control" type="date" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <span class="form-label">Returning</span>
-                                    <input class="form-control" type="date" required>
+                                    <input name="return_date" class="form-control" type="date" required>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
                             </div>
                         </div>
                         <div class="form-btn">
-                            <button class="submit-btn">Show flights</button>
+                            <button type="submit" class="submit-btn">Show flights</button>
                         </div>
                     </form>
                 </div>

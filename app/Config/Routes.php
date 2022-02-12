@@ -34,6 +34,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 $routes->get('/login', 'Auth::index');
 $routes->get('/register', 'Auth::register');
+$routes->get('/search', 'Home::search');
 
 $routes->group('admin', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->get('/dashboard', 'dashboard::index');
