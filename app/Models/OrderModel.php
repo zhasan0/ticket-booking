@@ -14,7 +14,13 @@ class OrderModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'purchase_price',
+        'sale_price',
+        'customer_id',
+        'created_by',
+        'ticket_origin_id',
+    ];
 
     // Dates
     protected $useTimestamps = false;

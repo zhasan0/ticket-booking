@@ -15,7 +15,6 @@
         </thead>
         <tbody>
         <?php foreach ($lists as $key => $row) { ?>
-<!--                --><?php //dd($row);?>
             <tr>
                 <td><?= $key + 1 ?></td>
                 <td><?= $row->ticket_name ?> </td>

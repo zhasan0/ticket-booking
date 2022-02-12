@@ -59,30 +59,33 @@ class Auth extends BaseController
         }
     }
 
-        function loginCheck()
-        {
-            $email = $this->request->getPost('email');
-            $password = md5($this->request->getPost('password'));
-            $usersModal = new \App\Models\UsersModel();
-            $user_info = $usersModal->where('email', $email)->first();
+    function loginCheck()
+    {
+        $email = $this->request->getPost('email');
+        $password = md5($this->request->getPost('password'));
+        $usersModal = new \App\Models\UsersModel();
+        $user_info = $usersModal->where('email', $email)->first();
 
-            if (!$user_info) {
-                return redirect()->back()->with('fail', "Ohhh! Entered invalid email or password!");
-            } else {
-                if ($password == $user_info['password']) {
-                    session()->set('loggedUser', $user_info);
-                } else {
-                    return redirect()->back()->with('fail', "Ohhh! Entered invalid email or password!");
+        if (!$user_info) {
+            return redirect()->back()->with('fail', "Ohhh! Entered invalid email or password!");
+        } else {
+            if ($password == $user_info['password']) {
+                session()->set('loggedUser', $user_info);
+                if ($user_info['type'] == "customer"){
+                    return redirect()->to('order/index');
                 }
-                return redirect()->to('/dashboard');
+            } else {
+                return redirect()->back()->with('fail', "Ohhh! Entered invalid email or password!");
             }
-        }
-
-        function logout()
-        {
-            if (session()->has('loggedUser')) {
-                session()->remove('loggedUser');
-                return redirect()->route('login')->with('fail', 'You are logged out');
-            }
+            return redirect()->to('/dashboard');
         }
     }
+
+    function logout()
+    {
+        if (session()->has('loggedUser')) {
+            session()->remove('loggedUser');
+            return redirect()->route('login')->with('fail', 'You are logged out');
+        }
+    }
+}

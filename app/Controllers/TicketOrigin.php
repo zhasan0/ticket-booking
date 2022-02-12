@@ -71,8 +71,8 @@ class TicketOrigin extends BaseController
             $values = [
                 'name' => $name,
                 'company_id' => $company,
-                'from' => $from,
-                'to' => $to,
+                '_from' => $from,
+                '_to' => $to,
                 'fly_date' => $fly_date,
                 'purchase_price' => $purchase_price,
                 'sale_price' => $sale_price,

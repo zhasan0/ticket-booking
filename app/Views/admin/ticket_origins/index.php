@@ -19,9 +19,9 @@
             <tr>
                 <td><?= $key + 1 ?></td>
                 <td> <?= $row['name'] ?> </td>
-                <td><?= $row['from'] ?></td>
-                <td><?= $row['to'] ?></td>
-                <td><?= $row['fly_date'] | date("d, m,YYYY") ?></td>
+                <td><?= $row['_from'] ?></td>
+                <td><?= $row['_to'] ?></td>
+                <td><?= $row['fly_date'] ?></td>
                 <td><?= $row['purchase_price'] ?></td>
                 <td><?= $row['sale_price'] ?></td>
             </tr>

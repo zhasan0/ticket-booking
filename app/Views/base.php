@@ -8,6 +8,7 @@
 
     <title>Ticket Booking</title>
 
+    <link rel="icon" type="image/x-icon" href="<?php echo base_url('img/logo.png') ?>">
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
 
@@ -24,8 +25,13 @@
     <div class="auth_area">
         <div class="container">
             <a class="btn btn-primary" href="<?php echo site_url('/'); ?>">Home</a> &nbsp
-            <a class="btn btn-primary" href="<?php echo site_url('auth'); ?>">Login</a> &nbsp
-            <a class="btn btn-primary" href="<?php echo site_url('auth/register'); ?>">Register</a>
+            <?php if (session()->get('loggedUser')) {?>
+                <a class="btn btn-primary" href="<?php echo site_url('/order'); ?>">Dashboard</a> &nbsp
+                <a class="btn btn-primary" href="<?php echo site_url('auth/logout'); ?>">Logout</a>
+            <?php } else{?>
+                <a class="btn btn-primary" href="<?php echo site_url('auth'); ?>">Login</a> &nbsp
+                <a class="btn btn-primary" href="<?php echo site_url('auth/register'); ?>">Register</a>
+            <?php }?>
         </div>
     </div>
     <div class="section-center">

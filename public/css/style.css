@@ -215,3 +215,8 @@ a{
 	padding: 30px 20px;
 	background-color: #ffffff;
 }
+
+.list{
+	width: 80%;
+	margin: 0 auto;
+}

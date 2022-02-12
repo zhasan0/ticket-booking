@@ -42,6 +42,7 @@ $routes->group('admin', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->get('/companies', 'company::index');
     $routes->get('/ticket/origin', 'ticketorigin::index');
     $routes->get('/users', 'User::index');
+    $routes->post('booking/(:num)', 'Order::booking/$1');
 });
 
 
