@@ -19,3 +19,42 @@ table.dataTable.display tbody tr.odd > .sorting_1, table.dataTable.order-column.
     background-color: #ffffff;
     padding: 30px 50px;
 }
+.dashboard{
+    width: 1000px;
+    margin: 50px auto auto auto;
+}
+.bg-1{
+    background-color: #52a23c !important;
+    color: #fff !important;
+}
+.bg-2{
+    background-color: #768af9 !important;
+    color: #000;
+}
+.bg-3{
+    background-color: #8c9f00 !important;
+}
+.box{
+    padding: 30px 0 50px 0;
+    background-color: transparent;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 0px 16px 2px rgba(0,0,0,0.2);
+}
+.box span{
+    font-size: 40px;
+    color: #ffffff;
+}
+.box h5{
+    color: #ffffff;
+}
+.box-footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    padding: 20px 0;
+}
+.box-footer a{
+    color: #000;
+}

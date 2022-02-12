@@ -12,7 +12,7 @@ class User extends BaseController
         $lists = new UsersModel();
 
         $data = [
-            'page_header' => 'Users List',
+            'page_header' => 'Customer List',
             'addLink' => '/User/create',
             'lists' => $lists->findAll()
         ];
